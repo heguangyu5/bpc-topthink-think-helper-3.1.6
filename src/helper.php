@@ -181,12 +181,13 @@ if (!function_exists('data_set')) {
             }
 
             if ($segments) {
-                foreach ($target as &$inner) {
+                foreach ($target as $idx => $inner) {
                     data_set($inner, $segments, $value, $overwrite);
+                    $target[$idx] = $inner;
                 }
             } elseif ($overwrite) {
-                foreach ($target as &$inner) {
-                    $inner = $value;
+                foreach ($target as $idx => $inner) {
+                    $target[$idx] = $value;
                 }
             }
         } elseif (Arr::accessible($target)) {
